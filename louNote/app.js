@@ -55,7 +55,7 @@ app.get("/",function(req,res) {
 });
 
 // 笔记详情
-app.get("/detail/:id",function(req,res) {
+app.get("/detail/:_id",function(req,res) {
 	Article.findOne({_id:req.params._id})
 			.exec(function(err,art) {
 				if(err) {
@@ -104,7 +104,7 @@ app.post("/reg",function(req,res) {
 		}
         
         // 对密码进行md5加密
-		var md5 = cryto.createHash("md5"),
+		var md5 = crypto.createHash("md5"),
 		    md5password = md5.update(password).digest("hex");
 
 		// 新建user对象用于保存数据
