@@ -22,14 +22,15 @@ var i = 0;
 var run = setInterval(function(){
 	var word = vocabulary[i++];
 	request(url_pre + word, function(error,response,body) {
-      result_json[word] = body;
-      if( i == 10) {
+      result_json[word] = JSON.parse(body);
+      if( i % 500 == 0 && i <= vocabulary.length) {
       	console.log(result_json);
+      	//console.log(JSON.stringify(result_json,null, 2));
       	result.write(JSON.stringify(result_json));
       	clearInterval(run);
       }
  })
-},100);
+},300);
 
 
 
